@@ -62,41 +62,22 @@ class YouTubeAPI:
             "maxResults": 10,
             "key": api_key
         }
-
         # Attempt to make the API call.
         try:
             response = requests.get(url_search, params=params)
+            response.raise_for_status()  # Raises an error for 4xx/5xx status codes
+            data = response.json()
 
-        except Exception as e:
-            # Catches network problem
-            print(f"Error:{str(e)}")
-            return None
-
-        # Check if the request was successful
-        if response.status_code == 200:
-            print("HTTP GET Successful")
-            try:
-                # parse the JSON response
-                data = response.json()
-            except Exception as e:
-                # Handle JSON parsing errors
-                print(f"Error parsing JSON: {str(e)}")
-                return None
-
-            # Check if 'data' is not empty
-            if data:
+            if data.get("items"):
                 video_ids = [item['id']['videoId'] for item in data.get('items', [])]
-                return video_ids,
-
+                return video_ids
             else:
-                # Print an error if no data is returned
                 print("Error: Empty data")
-                return None
+        except (requests.exceptions.RequestException, ValueError) as e:
+            # Handle both HTTP and JSON parsing errors
+            print(f"Error: {e}")
 
-        else:
-            # If the API returns an error status, print out the error details
-            print("Error:", response.status_code, response.text)
-            return None
+        return None
 
     def get_video_stats(self, video_id: str, api_key: str):
 
