@@ -22,8 +22,8 @@ def main():
     channel_videos_ids = a.get_video_ids_from_channel(channel_id, API_KEY, time_six_months_ago)
     print(channel_videos_ids)
 
-    for vid in channel_videos_ids:
-        print(a.get_video_stats(vid,API_KEY))
+
+    print(a.get_video_stats(channel_videos_ids,API_KEY))
 
 
 

@@ -82,14 +82,20 @@ class YouTubeAPI:
 
         return None
 
-    def get_video_stats(self, video_id: str, api_key: str):
+    def get_video_stats(self, video_id: list, api_key: str):
+        """
+        Fetches the video content details and stats from a video id list
+        :param video_id: The unique identifier of the YouTube video
+        :param api_key: Your YouTube v3 API key
+        :return: video dimension,view counts and comment counts
+        """
 
         # Define the API endpoint for fetching video data
         url_video = self.url + "/videos"
 
         params = {
-            "part": "id,statistics",
-            "id": video_id,
+            "part": "id,contentDetails,statistics",
+            "id": ",".join(video_id),
             "key": api_key
         }
 
@@ -100,7 +106,7 @@ class YouTubeAPI:
             data = response.json()
 
             if data.get("items"):
-                return data.get("items")
+                return data.get("items",[])
             else:
                 print("Error: Empty data")
 
