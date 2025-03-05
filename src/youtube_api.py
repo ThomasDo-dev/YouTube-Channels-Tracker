@@ -1,6 +1,4 @@
 import requests
-from datetime import datetime, timezone
-from dateutil.relativedelta import relativedelta
 
 class YouTubeAPI:
 
@@ -59,20 +57,13 @@ class YouTubeAPI:
             print("Error:", response.status_code, response.text)
             return None
 
-    def search_videos_from_channel(self, channel_id: str, api_key: str):
+    def search_videos_from_channel(self, channel_id: str, api_key: str, rfc3339_time):
 
         # Define the API endpoint for fetching video data
         url_search = self.url + '/search'
 
         # Define the API endpoint for fetching video data
         url_video = self.url + '/video'
-
-        # Get current UTC time
-        current_utc_time = datetime.now(timezone.utc)
-        # Get time 6 months ago
-        time_six_months_ago = current_utc_time - relativedelta(months=6)
-        # Convert ro RFC 3339 format
-        rfc3339_time = time_six_months_ago.isoformat()
 
         # Set up the parameters for the API request
         params = {
