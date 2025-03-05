@@ -87,14 +87,14 @@ class YouTubeAPI:
         Fetches the video content details and stats from a video id list
         :param video_id: The unique identifier of the YouTube video
         :param api_key: Your YouTube v3 API key
-        :return: video dimension,view counts and comment counts
+        :return: video thumbnail dimension,view counts and comment counts
         """
 
         # Define the API endpoint for fetching video data
         url_video = self.url + "/videos"
 
         params = {
-            "part": "id,contentDetails,statistics",
+            "part": "id, snippet, statistics",
             "id": ",".join(video_id),
             "key": api_key
         }
@@ -114,5 +114,3 @@ class YouTubeAPI:
         except (requests.exceptions.RequestException, ValueError) as e:
             # Handle both HTTP and JSON parsing errors
             print(f"Error: {e}")
-
-

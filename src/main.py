@@ -22,8 +22,10 @@ def main():
     channel_videos_ids = a.get_video_ids_from_channel(channel_id, API_KEY, time_six_months_ago)
     print(channel_videos_ids)
 
-
-    print(a.get_video_stats(channel_videos_ids,API_KEY))
+    videos_w_stats = a.get_video_stats(channel_videos_ids,API_KEY)
+    print(videos_w_stats)
+    videos_wo_shorts = filter_out_shorts(videos_w_stats)
+    print(videos_wo_shorts)
 
 
 
@@ -43,6 +45,31 @@ def date_x_months_ago(months: int):
     # Convert to RFC 3339 format
     rfc3339_time = time_six_months_ago.isoformat()
     return rfc3339_time
+
+def filter_out_shorts(videos):
+    """
+    Filter out shorts in the list of videos
+    :param video_id: The unique identifier of the YouTube video
+    :param api_key: Your YouTube v3 API key
+    :return: video thumbnail dimension,view counts and comment counts
+    """
+
+    non_shorts = []
+
+    for vid in videos:
+        thumbnails = vid.get("snippet", {}).get("thumbnails",{})
+
+        if "default" in thumbnails:
+            thumbnail = thumbnails["default"]
+            width = thumbnail.get("width", 0)
+            height = thumbnail.get("height", 0)
+
+            if width and height and height > width:
+                # Video is likely a Short due to vertical aspect ratio
+                continue
+
+        non_shorts.append(vid)
+        return non_shorts
 
 
 
