@@ -12,7 +12,7 @@ def main():
     time_six_months_ago = date_x_months_ago(6)
     a = YouTubeAPI()
 
-    subscriber_count, channel_id = a.get_subs_and_id(CHANNEL_HANDLE, API_KEY)
+    subscriber_count, channel_id = a.get_channel_subs_and_id(CHANNEL_HANDLE, API_KEY)
 
     print(f'Subscriber Count: {subscriber_count}')
     print(f'Channel ID: {channel_id}\n')
