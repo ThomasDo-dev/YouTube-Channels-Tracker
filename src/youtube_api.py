@@ -3,7 +3,7 @@ import requests
 class YouTubeAPI:
 
     def __init__(self):
-        self.url = 'https://www.googleapis.com/youtube/v3' # YouTube API HTTP endpoint
+        self.url = "https://www.googleapis.com/youtube/v3" # YouTube API HTTP endpoint
 
     def get_channel_subs_and_id(self, channel_handle: str, api_key: str):
 
@@ -15,7 +15,7 @@ class YouTubeAPI:
         """
 
         # Define the API endpoint for fetching channel data
-        url_channel = self.url + '/channels'
+        url_channel = self.url + "/channels"
 
         # Set up the parameters for the API request
         params = {
@@ -34,6 +34,7 @@ class YouTubeAPI:
                 return data["items"][0]["statistics"]["subscriberCount"], data["items"][0]["id"]
             else:
                 print("Error: Empty data")
+
         except (requests.exceptions.RequestException, ValueError) as e:
             # Handle both HTTP and JSON parsing errors
             print(f"Error: {e}")
@@ -51,7 +52,7 @@ class YouTubeAPI:
         """
 
         # Define the API endpoint for fetching video data
-        url_search = self.url + '/search'
+        url_search = self.url + "/search"
 
         # Set up the parameters for the API request
         params = {
@@ -62,6 +63,7 @@ class YouTubeAPI:
             "maxResults": 10,
             "key": api_key
         }
+
         # Attempt to make the API call.
         try:
             response = requests.get(url_search, params=params)
@@ -69,10 +71,11 @@ class YouTubeAPI:
             data = response.json()
 
             if data.get("items"):
-                video_ids = [item['id']['videoId'] for item in data.get('items', [])]
+                video_ids = [item["id"]["videoId"] for item in data.get("items", [])]
                 return video_ids
             else:
                 print("Error: Empty data")
+
         except (requests.exceptions.RequestException, ValueError) as e:
             # Handle both HTTP and JSON parsing errors
             print(f"Error: {e}")
@@ -82,20 +85,28 @@ class YouTubeAPI:
     def get_video_stats(self, video_id: str, api_key: str):
 
         # Define the API endpoint for fetching video data
-        url_video = self.url + '/video'
+        url_video = self.url + "/videos"
 
         params = {
-            "part": "snippet,contentDetails,statistics",
+            "part": "id,statistics",
             "id": video_id,
+            "key": api_key
         }
 
         try:
             #HTTP request GET
             response = requests.get(url_video, params = params)
+            response.raise_for_status()  # Raises an error for 4xx/5xx status codes
+            data = response.json()
 
-        except Exception as e:
-            # Catches network problem
-            print(f"Error:{str(e)}")
-            return None
+            if data.get("items"):
+                return data.get("items")
+            else:
+                print("Error: Empty data")
+
+
+        except (requests.exceptions.RequestException, ValueError) as e:
+            # Handle both HTTP and JSON parsing errors
+            print(f"Error: {e}")
 
 
