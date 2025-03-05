@@ -9,7 +9,7 @@ def main():
 
     API_KEY = os.getenv("API_KEY")
     CHANNEL_HANDLE = "GoogleDevelopers"
-    time_six_months_ago = six_months_ago()
+    time_six_months_ago = date_x_months_ago(6)
     a = YouTubeAPI()
 
     subscriber_count, channel_id = a.get_subs_and_id(CHANNEL_HANDLE, API_KEY)
@@ -17,17 +17,25 @@ def main():
     print(f'Subscriber Count: {subscriber_count}')
     print(f'Channel ID: {channel_id}\n')
 
-    channel_videos_data = a.search_videos_from_channel(channel_id, API_KEY, time_six_months_ago)
+    channel_videos_ids = a.get_video_ids_from_channel(channel_id, API_KEY, time_six_months_ago)
 
-    if channel_videos_data:
-        print(channel_videos_data)
+    print(channel_videos_ids)
 
-def six_months_ago():
+
+
+
+
+def date_x_months_ago(months: int):
+    """
+    Get date and time of x months in rfc3339 format
+    :param months: An integer value of how many months back the user want to look back at
+    :return: rfc3339_time of x months ago
+    """
     # Get current UTC time
     current_utc_time = datetime.now(timezone.utc)
-    # Get time 6 months ago
-    time_six_months_ago = current_utc_time - relativedelta(months=6)
-    # Convert ro RFC 3339 format
+    # Get time x months ago
+    time_six_months_ago = current_utc_time - relativedelta(months=months)
+    # Convert to RFC 3339 format
     rfc3339_time = time_six_months_ago.isoformat()
     return rfc3339_time
 

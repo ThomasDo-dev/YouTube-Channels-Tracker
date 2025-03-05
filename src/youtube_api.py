@@ -11,7 +11,7 @@ class YouTubeAPI:
         Fetches the subscriber count for a give YouTube channel
         :param channel_handle: The unique identifier of the YouTube channel
         :param api_key: Your YouTube v3 API key
-        :return: The subscriber count
+        :return: The subscriber count, the channel id
         """
 
         # Define the API endpoint for fetching channel data
@@ -38,7 +38,6 @@ class YouTubeAPI:
             try:
                 #parse the JSON response
                 data = response.json()
-                print(data)
             except Exception as e:
                 # Handle JSON parsing errors
                 print(f"Error parsing JSON: {str(e)}")
@@ -57,7 +56,14 @@ class YouTubeAPI:
             print("Error:", response.status_code, response.text)
             return None
 
-    def search_videos_from_channel(self, channel_id: str, api_key: str, rfc3339_time):
+    def get_video_ids_from_channel(self, channel_id: str, api_key: str, rfc3339_time):
+        """
+        Fetches the videos ids of a channel in the last 6 months excluding shorts
+        :param channel_id: The unique identifier of the YouTube channel
+        :param api_key: Your YouTube v3 API key
+        :param rfc3339_time: Date and time 6 months ago in rfc3339 format
+        :return: video ids
+        """
 
         # Define the API endpoint for fetching video data
         url_search = self.url + '/search'
@@ -89,11 +95,21 @@ class YouTubeAPI:
             try:
                 # parse the JSON response
                 data = response.json()
-                print(data)
             except Exception as e:
                 # Handle JSON parsing errors
                 print(f"Error parsing JSON: {str(e)}")
                 return None
+
+            # Check if 'data' is not empty
+            if data:
+                video_ids = [item['id']['videoId'] for item in data.get('items', [])]
+                return video_ids,
+
+            else:
+                # Print an error if no data is returned
+                print("Error: Empty data")
+                return None
+
         else:
             # If the API returns an error status, print out the error details
             print("Error:", response.status_code, response.text)
