@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0797db2-c5fa-4266-9b75-61352d5a5a20" name="Changes" comment="refactor: Optimise get_video_stats method to handle multiple video IDs in a single request, reducing API calls and quota usage">
+    <list default="true" id="c0797db2-c5fa-4266-9b75-61352d5a5a20" name="Changes" comment="WIP(filter_out_shorts): add preliminary function for filtering shorts&#10;&#10;Implemented filter_out_shorts to remove shorts based on thumbnail dimensions. &#10;&#10;Note: the filtering logic isn’t fully accurate yet; committing as a work-in-progress to refine further.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/youtube_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/youtube_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +148,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741192174900</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="WIP(filter_out_shorts): add preliminary function for filtering shorts&#10;&#10;Implemented filter_out_shorts to remove shorts based on thumbnail dimensions. &#10;&#10;Note: the filtering logic isn’t fully accurate yet; committing as a work-in-progress to refine further.">
+      <option name="closed" value="true" />
+      <created>1741197885909</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1741197885909</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -163,6 +170,7 @@
     <MESSAGE value="refactor: simplify 'get_video_ids_from_channel' method by consolidating exception handling and removing redundancy" />
     <MESSAGE value="feature: Add method to retrieve statistics for multiple videos" />
     <MESSAGE value="refactor: Optimise get_video_stats method to handle multiple video IDs in a single request, reducing API calls and quota usage" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: Optimise get_video_stats method to handle multiple video IDs in a single request, reducing API calls and quota usage" />
+    <MESSAGE value="WIP(filter_out_shorts): add preliminary function for filtering shorts&#10;&#10;Implemented filter_out_shorts to remove shorts based on thumbnail dimensions. &#10;&#10;Note: the filtering logic isn’t fully accurate yet; committing as a work-in-progress to refine further." />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP(filter_out_shorts): add preliminary function for filtering shorts&#10;&#10;Implemented filter_out_shorts to remove shorts based on thumbnail dimensions. &#10;&#10;Note: the filtering logic isn’t fully accurate yet; committing as a work-in-progress to refine further." />
   </component>
 </project>
