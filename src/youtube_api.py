@@ -60,7 +60,7 @@ class YouTubeAPI:
             "channelId": channel_id,
             "type": "video",
             "publishedAfter": rfc3339_time,
-            "maxResults": 10,
+            "maxResults": 180,
             "key": api_key
         }
 
