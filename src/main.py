@@ -5,9 +5,6 @@ from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta
 from youtube_api import YouTubeAPI
 
-
-
-
 def main():
     load_dotenv()
 
@@ -17,16 +14,18 @@ def main():
     a = YouTubeAPI()
 
     subscriber_count, channel_id = a.get_channel_subs_and_id(CHANNEL_HANDLE, API_KEY)
-    print(f'Subscriber Count: {subscriber_count}')
-    print(f'Channel ID: {channel_id}\n')
+    print(f"Subscriber Count: {float(subscriber_count)/1000000.00}M")
+    print(f"Channel ID: {channel_id}\n")
 
     channel_videos_ids = a.get_video_ids_from_channel(channel_id, API_KEY, time_six_months_ago)
     print(channel_videos_ids)
 
-    videos_w_stats = a.get_video_stats(channel_videos_ids,API_KEY)
-    print(videos_w_stats)
     videos_wo_shorts = filter_out_shorts(channel_videos_ids)
     print(videos_wo_shorts)
+
+    videos_w_stats = a.get_video_stats(videos_wo_shorts,API_KEY)
+    print(videos_w_stats)
+
 
 
 
