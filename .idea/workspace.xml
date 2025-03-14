@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c0797db2-c5fa-4266-9b75-61352d5a5a20" name="Changes" comment="refactor(api): adjust maxResults parameter to improve data retrieval and efficiency">
+    <list default="true" id="c0797db2-c5fa-4266-9b75-61352d5a5a20" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/youtube_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/youtube_api.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +172,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741273322953</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="changes in commenting and main logic of filtering out shorts before fetch data from YouTube API">
+      <option name="closed" value="true" />
+      <created>1741275122663</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1741275122663</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -190,6 +197,7 @@
     <MESSAGE value="WIP(filter_out_shorts): add preliminary function for filtering shorts&#10;&#10;Implemented filter_out_shorts to remove shorts based on thumbnail dimensions. &#10;&#10;Note: the filtering logic isn’t fully accurate yet; committing as a work-in-progress to refine further." />
     <MESSAGE value="refactor(filter_out_shorts): use HEAD requests instead of dimensions for filtering Shorts&#10;&#10;Updated the filter_out_shorts function to determine if a video is a Short by making HEAD requests to its Shorts URL rather than relying on thumbnail dimensions, which proved inaccurate." />
     <MESSAGE value="refactor(api): adjust maxResults parameter to improve data retrieval and efficiency" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor(api): adjust maxResults parameter to improve data retrieval and efficiency" />
+    <MESSAGE value="changes in commenting and main logic of filtering out shorts before fetch data from YouTube API" />
+    <option name="LAST_COMMIT_MESSAGE" value="changes in commenting and main logic of filtering out shorts before fetch data from YouTube API" />
   </component>
 </project>

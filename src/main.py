@@ -26,12 +26,6 @@ def main():
     videos_w_stats = a.get_video_stats(videos_wo_shorts,API_KEY)
     print(videos_w_stats)
 
-
-
-
-
-
-
 def date_x_months_ago(months: int):
     """
     Get date and time of x months in rfc3339 format
@@ -67,10 +61,6 @@ def filter_out_shorts(videos):
             continue
         non_shorts.append(vid)
     return non_shorts
-
-
-
-
 
 if __name__ == "__main__":
     main()
